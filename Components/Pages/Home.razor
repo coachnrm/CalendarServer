@@ -3,7 +3,80 @@
 @using Calendar.Models
 @using System.Globalization
 
+    <style type="text/css">
+        #tblParent tbody tr td {
+            width: 200px;
+            height: 200px;
+        }
+
+        #divParent {
+            position: relative;
+        }
+
+        #divModal {
+            z-index: 10;
+            position: absolute;
+            border: 1px solid #000000;
+            border-radius: 3px;
+            background-color: #ffffff;
+            left: 40%;
+            top: 20%;
+            width: 400px;
+            min-height: 300px;
+        }
+
+        .modalHeading {
+            text-align: center;
+            font-size: 50px;
+            text-decoration: underline;
+            margin-bottom: 36px;
+        }
+    </style>
+
 <h1>ปฏิทินกิจกรรม</h1>
+
+@if (displayModal)
+{
+    <div id="divModal">
+        <div class="panel panel-default">
+            <div class="panel-heading modalHeading">Set Note</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>From Date</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="date" style="width:100%;" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>To Date</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="date" style="width:100%;" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Note : </label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" placeholder="Type here..." />
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom:10px;">
+                    <div class="col-md-6">
+                    </div>
+                    <div class="col-md-6" style="text-align:right;">
+                        <button class="btn btn-success" style="float:left;margin-right:5px;">Save</button>
+                        <button class="btn btn-danger" @onclick="CloseModal" style="float:left;">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
 <div>
     <label>Year:</label>
@@ -40,7 +113,10 @@
             <tr>
                 @for (var dayIndex = 0; dayIndex < weeks[weekIndex].Dates.Count(); dayIndex++)
                 {
-                    <td>
+                    var wIndex = weekIndex;
+                    var dIndex = dayIndex;
+
+                    <td @ondblclick="@(() => OpenModal(wIndex, dIndex))">
                         @weeks[weekIndex].Dates[dayIndex].DateValue
                         <br /><br />
                         <label style="color:#c00;font-weight:bold">@weeks[weekIndex].Dates[dayIndex].Note</label>
@@ -53,6 +129,7 @@
 </table>
 
 @code {
+    bool displayModal = false;
     List<string> monthNames = new List<string>();
     List<string> days = new List<string>();
     List<WeekClass> weeks = new List<WeekClass>();
@@ -153,6 +230,16 @@
             }
             countdays++;
         }
+    }
+
+    private void CloseModal()
+    {
+        displayModal = false;
+    }
+
+    private void OpenModal(int wIndex, int dIndex)
+    {
+        displayModal = true;
     }
 }
 

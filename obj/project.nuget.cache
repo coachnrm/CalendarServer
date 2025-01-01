@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "7jwFBdxGdvo=",
+  "dgSpecHash": "gwV2ECsQF5k=",
   "success": true,
   "projectFilePath": "/Users/home/Desktop/Calendar/Calendar.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/home/.nuget/packages/dapper/2.1.35/dapper.2.1.35.nupkg.sha512"
+  ],
   "logs": []
 }

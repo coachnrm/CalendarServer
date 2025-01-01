@@ -1,10 +1,13 @@
 using Calendar.Components;
+using Calendar.IService;
+using Calendar.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+builder.Services.AddScoped<IDayEventService, DayEventService>();
 
 var app = builder.Build();
 

@@ -77,3 +77,4 @@
 /Users/home/Desktop/Calendar/obj/Debug/net9.0/Calendar.pdb
 /Users/home/Desktop/Calendar/obj/Debug/net9.0/Calendar.genruntimeconfig.cache
 /Users/home/Desktop/Calendar/obj/Debug/net9.0/ref/Calendar.dll
+/Users/home/Desktop/Calendar/obj/Debug/net9.0/Calendar.sourcelink.json
